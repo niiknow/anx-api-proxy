@@ -1,7 +1,5 @@
 const path                = require('path');
 const mix                 = require('laravel-mix');
-const WebpackChunkHash    = require('webpack-chunk-hash');
-const { VueLoaderPlugin } = require('vue-loader');
 
 const source = 'resources';
 const public = 'public';
@@ -13,7 +11,6 @@ mix.webpackConfig({
     'jquery': 'jQuery',
     'vue': 'Vue'
   },
-  output: { chunkFilename: mix.inProduction() ? 'js/parts/[name].[chunkhash].js' : 'js/parts/[name].js' },
   module: {
     rules: [
       {
@@ -29,10 +26,6 @@ mix.webpackConfig({
       }
     ]
   },
-  plugins: [
-    new VueLoaderPlugin(),
-    new WebpackChunkHash({algorithm: 'md5'})
-  ],
   devServer: { overlay: true },
   devtool: 'source-map',
   resolve: {
