@@ -1,0 +1,50 @@
+{
+    "private": false,
+    "scripts": {
+        "clean": "rm -rf ./public/js/parts/*",
+        "dev": "npm run development",
+        "development": "npm run clean && cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "npm run clean && cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "npm run clean && cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "npm run clean && cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "test": "npm run clean && cross-env NODE_ENV=test mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --require tests/Vue/setup.js tests/Vue/**/*.spec.js",
+        "watch-test": "npm run clean && cross-env NODE_ENV=test mocha-webpack --webpack-config=node_modules/laravel-mix/setup/webpack.config.js --watch --require tests/Vue/setup.js tests/Vue/**/*.spec.js",
+        "lint": "eslint --ext .js,.vue resources/js",
+        "lint-fix": "eslint --fix --ext .js,.vue resources/js",
+        "check-outdated": "npm outdated"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.2.0",
+        "@babel/plugin-syntax-dynamic-import": "^7.2.0",
+        "babel-eslint": "^10.0.1",
+        "babel-loader": "^8.0.2",
+        "babel-preset-vue-app": "^2.0.0",
+        "browser-sync": "^2.26.0",
+        "browser-sync-webpack-plugin": "^2.0.1",
+        "copy-webpack-plugin": "^4.6.0",
+        "cross-env": "^5.1.6",
+        "eslint": "^5.9.0",
+        "eslint-config-prettier": "^3.3.0",
+        "eslint-friendly-formatter": "^4.0.1",
+        "eslint-loader": "^2.1.1",
+        "eslint-plugin-import": "^2.14.0",
+        "eslint-plugin-vue": "^5.0.0",
+        "laravel-mix": "^3.0.0",
+        "vue": "^2.5.17",
+        "vue-loader": "^15.4.2",
+        "vue-template-compiler": "^2.5.17",
+        "webpack-chunk-hash": "^0.6.0"
+    },
+    "dependencies": {},
+    "browserslist": [
+        "> 1%",
+        "last 2 versions",
+        "not ie <= 9"
+    ],
+    "engines": {
+        "node": ">= 8.10.x",
+        "npm": ">= 5.6.0"
+    }
+}
