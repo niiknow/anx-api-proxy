@@ -10,8 +10,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 /**
  * @OA\Info(
  *   version="1.0.0",
- *   title="Table API",
- *   description="A rest-ful API supporting multi-tenant dynamic table manipulations",
+ *   title="AppNexus Proxy API",
+ *   description="A rest-ful API to proxy AppNexus.",
  *   @OA\Contact(
  *      email="friends@niiknow.org"
  *   ),

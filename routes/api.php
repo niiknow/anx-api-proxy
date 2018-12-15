@@ -2,5 +2,9 @@
 use Niiknow\Laratt\LarattServiceProvider as r;
 
 Route::group(['prefix' => 'v1', 'middleware' => 'api'], function () {
-    // TODO: api mapping
+    Route::match(
+        ['get', 'post', 'put', 'delete'],
+        '/proxy/{path?}',
+        'ProxyController@index'
+    )->where('path', '[\/\w\.-]*');
 });

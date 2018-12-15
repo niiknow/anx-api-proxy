@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b127f7ffb5c47d2ec45866387374f5df",
+    "content-hash": "7e6bc8b0bc81fbf322787553c33aeb15",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -594,6 +594,54 @@
                 "parser"
             ],
             "time": "2018-03-08T01:11:30+00:00"
+        },
+        {
+            "name": "f3ath/appnexus",
+            "version": "0.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/f3ath/appnexusclient.git",
+                "reference": "3c9c390212f1ce57ce4a2e8d7ba1c05c71b9de82"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/f3ath/appnexusclient/zipball/3c9c390212f1ce57ce4a2e8d7ba1c05c71b9de82",
+                "reference": "3c9c390212f1ce57ce4a2e8d7ba1c05c71b9de82",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "phpcurl/curlwrapper": "^1.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "F3\\AppNexusClient\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Karapetov",
+                    "email": "karapetov@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Simple AppNexus (appnexus.com) client",
+            "homepage": "https://github.com/f3ath/AppNexusClient",
+            "keywords": [
+                "api",
+                "appnexus",
+                "appnexus.com",
+                "client"
+            ],
+            "time": "2017-06-02T20:13:48+00:00"
         },
         {
             "name": "fideloper/proxy",
@@ -2121,6 +2169,61 @@
                 "promise"
             ],
             "time": "2016-01-26T13:27:02+00:00"
+        },
+        {
+            "name": "phpcurl/curlwrapper",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpcurl/curlwrapper.git",
+                "reference": "3db33f0e86d0eb8068a0baa3e56ec8419cb0c302"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpcurl/curlwrapper/zipball/3db33f0e86d0eb8068a0baa3e56ec8419cb0c302",
+                "reference": "3db33f0e86d0eb8068a0baa3e56ec8419cb0c302",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8 || ^5.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "PHPCurl\\CurlWrapper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Alexey Karapetov",
+                    "email": "karapetov@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "The simplest OOP wrapper for curl, curl_multi, curl_share functions. Use CURL as a dependency, not hard-coded!",
+            "keywords": [
+                "OOP",
+                "Phpcurl",
+                "curl",
+                "curl_multi",
+                "curl_share",
+                "dependency",
+                "injection",
+                "mock",
+                "phpunit",
+                "testable",
+                "testing",
+                "wrapper"
+            ],
+            "time": "2016-02-03T06:11:16+00:00"
         },
         {
             "name": "psr/container",

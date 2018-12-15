@@ -1,6 +1,6 @@
 {
     "name": "niiknow/anx-api-proxy",
-    "description": "Table API",
+    "description": "AppNexus Proxy API",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
     "type": "project",
@@ -17,7 +17,8 @@
         "spatie/laravel-backup": "^5.11",
         "yajra/laravel-datatables-oracle": "~8.0",
         "zircote/swagger-php": "^3.0",
-        "niiknow/laratt": "^1.3"
+        "niiknow/laratt": "^1.3",
+        "f3ath/appnexus": "^0.4.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",
