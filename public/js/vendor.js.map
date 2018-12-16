@@ -1,1 +1,1 @@
-{"version":3,"sources":["webpack:///external \"Vue\""],"names":["module","exports","Vue"],"mappings":"4EAAAA,EAAAC,QAAAC","file":"/js/vendor.js","sourcesContent":["module.exports = Vue;\n\n\n//////////////////\n// WEBPACK FOOTER\n// external \"Vue\"\n// module id = lRwf\n// module chunks = 2"],"sourceRoot":""}
+{"version":3,"sources":["webpack:///external \"Vue\""],"names":["module","exports","Vue"],"mappings":"qHAAAA,EAAAC,QAAAC","file":"/js/vendor.js","sourcesContent":["module.exports = Vue;"],"sourceRoot":""}
