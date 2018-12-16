@@ -14,6 +14,187 @@
         }
     ],
     "paths": {
+        "/advertiser/{aid}/report/line": {
+            "get": {
+                "tags": [
+                    "advertiser"
+                ],
+                "summary": "get advertiser report by line item",
+                "operationId": "Api\\Controllers\\AdvertiserController::reportByLine",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "api key",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "aid",
+                        "in": "path",
+                        "description": "advertiser id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "start date",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "end date default as yesterday",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "response object"
+                    }
+                }
+            }
+        },
+        "/advertiser/{aid}/report/summary": {
+            "get": {
+                "tags": [
+                    "advertiser"
+                ],
+                "summary": "get advertiser report summary",
+                "operationId": "Api\\Controllers\\AdvertiserController::reportSummary",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "api key",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "aid",
+                        "in": "path",
+                        "description": "advertiser id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "start date",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "end date default as yesterday",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "response object"
+                    }
+                }
+            }
+        },
+        "/advertiser/{aid}/report": {
+            "get": {
+                "tags": [
+                    "advertiser"
+                ],
+                "summary": "get advertiser report",
+                "operationId": "Api\\Controllers\\AdvertiserController::report",
+                "parameters": [
+                    {
+                        "name": "X-API-Key",
+                        "in": "header",
+                        "description": "api key",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "aid",
+                        "in": "path",
+                        "description": "advertiser id",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "columns[]",
+                        "in": "query",
+                        "description": "csv list of columns",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "start",
+                        "in": "query",
+                        "description": "start date",
+                        "required": true,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "end date default as yesterday",
+                        "required": false,
+                        "style": "form",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "default": {
+                        "description": "response object"
+                    }
+                }
+            }
+        },
         "/proxy/{path}": {
             "get": {
                 "tags": [

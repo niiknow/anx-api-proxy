@@ -12,11 +12,6 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     Route::get(
-        '/advertiser/{aid}/report',
-        'AdvertiserController@report'
-    );
-
-    Route::get(
         '/advertiser/{aid}/report/line',
         'AdvertiserController@reportByLine'
     );
@@ -24,5 +19,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get(
         '/advertiser/{aid}/report/summary',
         'AdvertiserController@reportSummary'
+    );
+
+    Route::get(
+        '/advertiser/{aid}/report',
+        'AdvertiserController@report'
     );
 });

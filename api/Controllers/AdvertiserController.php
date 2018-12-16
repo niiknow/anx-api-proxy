@@ -27,6 +27,58 @@ class AdvertiserController extends Controller
         $this->anx = $anx;
     }
 
+
+    /**
+     * @OA\Get(
+     *   path="/advertiser/{aid}/report/line",
+     *   tags={"advertiser"},
+     *   summary="get advertiser report by line item",
+     *   @OA\Parameter(
+     *     name="X-API-Key",
+     *     in="header",
+     *     description="api key",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="aid",
+     *     in="path",
+     *     description="advertiser id",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="start",
+     *     in="query",
+     *     description="start date",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="end",
+     *     in="query",
+     *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="response object"
+     *   )
+     * )
+     */
     public function reportByLine(Request $request, $aid)
     {
         return $this->doReport($request, $aid, [
@@ -50,6 +102,57 @@ class AdvertiserController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get(
+     *   path="/advertiser/{aid}/report/summary",
+     *   tags={"advertiser"},
+     *   summary="get advertiser report summary",
+     *   @OA\Parameter(
+     *     name="X-API-Key",
+     *     in="header",
+     *     description="api key",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="aid",
+     *     in="path",
+     *     description="advertiser id",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="start",
+     *     in="query",
+     *     description="start date",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="end",
+     *     in="query",
+     *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="response object"
+     *   )
+     * )
+     */
     public function reportSummary(Request $request, $aid)
     {
         return $this->doReport($request, $aid, [
@@ -67,9 +170,77 @@ class AdvertiserController extends Controller
         ]);
     }
 
+    /**
+     * @OA\Get(
+     *   path="/advertiser/{aid}/report",
+     *   tags={"advertiser"},
+     *   summary="get advertiser report",
+     *   @OA\Parameter(
+     *     name="X-API-Key",
+     *     in="header",
+     *     description="api key",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="aid",
+     *     in="path",
+     *     description="advertiser id",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="integer"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="columns[]",
+     *     in="query",
+     *     description="csv list of columns",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="array",
+     *       @OA\Items(type="string")
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="start",
+     *     in="query",
+     *     description="start date",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="end",
+     *     in="query",
+     *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="response object"
+     *   )
+     * )
+     */
     public function report(Request $request, $aid)
     {
-        return $this->doReport($request, $aid, explode(",", $request->query('columns')));
+        $columns = $request->query('columns');
+
+        if (is_string($columns)) {
+            $columns = explode(",", $columns);
+        }
+
+        return $this->doReport($request, $aid, $columns);
     }
 
     public function doReport(Request $request, $aid, $columns)
@@ -87,12 +258,14 @@ class AdvertiserController extends Controller
                 'time_granularity' => 'daily',
                 'format' => 'csv',
                 'timezone' => 'UTC',
-                'report_interval' => 'last_30_days'
+                'report_interval' => 'last_30_days',
+                'end_date' => Carbon::now()->subDays(1)->format('Y-m-d') . ' 23:59:59'
             ];
 
             $reportInterval = $request->query('report_interval');
             if (isset($reportInterval)) {
-                $params['report_interval'] = $reportInterval;
+                unset($param['end_date']);
+                $param['report_interval'] = $reportInterval;
             } else {
                 $start = $request->query('start');
                 if (isset($start)) {
@@ -102,10 +275,9 @@ class AdvertiserController extends Controller
                     $end = $request->query('end');
                     if (isset($end)) {
                         $param['end_date'] = $end . ' 23:59:59';
-                    } else {
-                        $param['end_date'] = Carbon::now()->subDays(1)->format('Y-m-d') . ' 23:59:59';
                     }
-                    \Log::info($param);
+                } else {
+                    unset($param['end_date']);
                 }
             }
 
