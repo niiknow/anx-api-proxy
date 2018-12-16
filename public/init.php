@@ -36,7 +36,8 @@ if (!file_exists($envFile)) {
     // generate APP_ENV and API_KEY
     $file = file_get_contents($envFile);
     $file = preg_replace("/APP_KEY=.*/", "APP_KEY=base64:".base64_encode(genuid()), $file, 1);
-    $file = preg_replace("/API_KEY=.*/", "API_KEY=".genuid(), $file, 1);
+    $file = preg_replace("/API_KEYS=.*/", "API_KEY=".genuid().','.genuid(), $file, 1);
+    $file = preg_replace("/REPORT_KEY=.*/", "REPORT_KEY=".genuid(), $file, 1);
     file_put_contents($envFile, $file);
 }
 

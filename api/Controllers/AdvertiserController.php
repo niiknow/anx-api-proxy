@@ -34,16 +34,6 @@ class AdvertiserController extends Controller
      *   tags={"advertiser"},
      *   summary="get advertiser report by line item",
      *   @OA\Parameter(
-     *     name="X-API-Key",
-     *     in="header",
-     *     description="api key",
-     *     required=false,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
      *     name="aid",
      *     in="path",
      *     description="advertiser id",
@@ -67,6 +57,16 @@ class AdvertiserController extends Controller
      *     name="end",
      *     in="query",
      *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="key",
+     *     in="query",
+     *     description="report api key",
      *     required=false,
      *     @OA\Schema(
      *       type="string"
@@ -108,16 +108,6 @@ class AdvertiserController extends Controller
      *   tags={"advertiser"},
      *   summary="get advertiser report summary",
      *   @OA\Parameter(
-     *     name="X-API-Key",
-     *     in="header",
-     *     description="api key",
-     *     required=false,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
      *     name="aid",
      *     in="path",
      *     description="advertiser id",
@@ -141,6 +131,16 @@ class AdvertiserController extends Controller
      *     name="end",
      *     in="query",
      *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="key",
+     *     in="query",
+     *     description="report api key",
      *     required=false,
      *     @OA\Schema(
      *       type="string"
@@ -176,16 +176,6 @@ class AdvertiserController extends Controller
      *   tags={"advertiser"},
      *   summary="get advertiser report",
      *   @OA\Parameter(
-     *     name="X-API-Key",
-     *     in="header",
-     *     description="api key",
-     *     required=false,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
      *     name="aid",
      *     in="path",
      *     description="advertiser id",
@@ -220,6 +210,16 @@ class AdvertiserController extends Controller
      *     name="end",
      *     in="query",
      *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="key",
+     *     in="query",
+     *     description="report api key",
      *     required=false,
      *     @OA\Schema(
      *       type="string"
