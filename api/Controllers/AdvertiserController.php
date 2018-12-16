@@ -142,6 +142,6 @@ class AdvertiserController extends Controller
 
         return response()
             ->json(['data' => $csv, 'id' => $reportId, 'params' => $param])
-            ->header('Cache-Control', 'max-age=86400');
+            ->header('Cache-Control', 'max-age=86400, public');
     }
 }
