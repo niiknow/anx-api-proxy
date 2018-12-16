@@ -40,8 +40,8 @@ class AdvertiserController extends Controller
                 'report_type' => 'network_advertiser_analytics',
                 'columns' => [
                     'line_item_id',
-                    'day',
                     'line_item_name',
+                    'day',
                     'insertion_order_id',
                     'insertion_order_name',
                     'campaign_id',
