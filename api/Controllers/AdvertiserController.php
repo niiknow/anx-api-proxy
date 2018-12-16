@@ -27,9 +27,9 @@ class AdvertiserController extends Controller
         $this->anx = $anx;
     }
 
-    public function reportByLine(Request $request)
+    public function reportByLine(Request $request, $aid)
     {
-        return $this->doReport($request, [
+        return $this->doReport($request, $aid, [
             'line_item_id',
             'line_item_name',
             'day',
@@ -50,9 +50,9 @@ class AdvertiserController extends Controller
         ]);
     }
 
-    public function reportSummary(Request $request)
+    public function reportSummary(Request $request, $aid)
     {
-        return $this->doReport($request, [
+        return $this->doReport($request, $aid, [
             'day',
             'advertiser_id',
             'imps',
@@ -67,7 +67,12 @@ class AdvertiserController extends Controller
         ]);
     }
 
-    public function doReport(Request $request, $columns)
+    public function report(Request $request, $aid)
+    {
+        return $this->doReport($request, $aid, explode(",", $request->query('columns')));
+    }
+
+    public function doReport(Request $request, $aid, $columns)
     {
         if (!$this->isValidKey($request->query('key'))) {
             return response()->json(['error' => 'Not authorized'], 403);
@@ -77,7 +82,7 @@ class AdvertiserController extends Controller
         if (!isset($reportId)) {
             // select from report folder
             $param = [
-                'report_type' => 'network_advertiser_analytics',
+                'report_type' => 'advertiser_analytics',
                 'columns' => $columns,
                 'time_granularity' => 'daily',
                 'format' => 'csv',
@@ -89,26 +94,27 @@ class AdvertiserController extends Controller
             if (isset($reportInterval)) {
                 $params['report_interval'] = $reportInterval;
             } else {
-                $start = $request->query('start_date');
+                $start = $request->query('start');
                 if (isset($start)) {
                     unset($param['report_interval']);
                     $param['start_date'] = $start;
 
-                    $end = $request->query('end_date');
+                    $end = $request->query('end');
                     if (isset($end)) {
                         $param['end_date'] = $end . ' 23:59:59';
                     } else {
-                        $param['end_date'] = Carbon::now()->subDays(1)->format('Y-m-d') . '  23:59:59';
+                        $param['end_date'] = Carbon::now()->subDays(1)->format('Y-m-d') . ' 23:59:59';
                     }
+                    \Log::info($param);
                 }
             }
 
-            $path = 'report?advertiser_id=' . $request->query('advertiser_id');
+            $path = 'report?advertiser_id=' . $aid;
 
             try {
                 $rst = $this->anx->call('POST', $path, ['report' => $param]);
             } catch (\RuntimeException $re) {
-                return response()->json(['message' => $re->getMessage()], 443);
+                return response()->json(['error' => $re->getMessage()], 443);
             }
 
             $reportId = $rst->report_id;
@@ -141,7 +147,12 @@ class AdvertiserController extends Controller
         }
 
         return response()
-            ->json(['data' => $csv, 'id' => $reportId, 'params' => $param])
+            ->json([
+                'id' => $reportId,
+                'req' => $param,
+                'recordsTotal' => count($csv),
+                'data' => $csv
+            ])
             ->header('Cache-Control', 'max-age=86400, public');
     }
 }

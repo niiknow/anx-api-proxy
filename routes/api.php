@@ -12,12 +12,17 @@ Route::group(['prefix' => 'v1'], function () {
     });
 
     Route::get(
-        '/advertiser/report/line',
+        '/advertiser/{aid}/report',
+        'AdvertiserController@report'
+    );
+
+    Route::get(
+        '/advertiser/{aid}/report/line',
         'AdvertiserController@reportByLine'
     );
 
     Route::get(
-        '/advertiser/report/summary',
+        '/advertiser/{aid}/report/summary',
         'AdvertiserController@reportSummary'
     );
 });
