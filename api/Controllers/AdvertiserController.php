@@ -4,6 +4,7 @@ namespace Api\Controllers;
 
 use Api\Controllers\Controller;
 use Api\Extra\AppNexusService;
+use Api\Extra\ReportKeyTrait;
 use App\Exceptions\GeneralException;
 
 use Carbon\Carbon;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Cache;
 
 class AdvertiserController extends Controller
 {
+    use ReportKeyTrait;
+
     protected $anx;
 
     /**
@@ -26,6 +29,10 @@ class AdvertiserController extends Controller
 
     public function report(Request $request)
     {
+        if (!$this->isValidKey($request->query('key'))) {
+            return response()->json(['error' => 'Not authorized'], 403);
+        }
+
         $reportId = $request->query('report_id');
         if (!isset($reportId)) {
             // select from report folder

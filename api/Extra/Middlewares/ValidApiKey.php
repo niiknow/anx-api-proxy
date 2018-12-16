@@ -17,10 +17,12 @@ class ValidApiKey
      */
     public function handle($request, Closure $next)
     {
-        $apiKey = config('admin.api_key');
+        $apiKey = config('admin.api_keys');
         if ($apiKey) {
+            $apiKey = ',' . preg_replace('/\s+/', '', $apiKey) . ',';
+
             $key = $request->header('x-api-key');
-            if ($key != $apiKey) {
+            if (strpos($apiKey, ',' . $key . ',') === false) {
                 return response()->json(['error' => 'Not authorized'], 403);
             }
         }
