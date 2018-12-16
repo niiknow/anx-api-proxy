@@ -7,4 +7,9 @@ Route::group(['prefix' => 'v1', 'middleware' => 'api'], function () {
         '/proxy/{path?}',
         'ProxyController@index'
     )->where('path', '[\/\w\.-]*');
+
+    Route::get(
+        '/advertiser/report',
+        'AdvertiserController@report'
+    );
 });

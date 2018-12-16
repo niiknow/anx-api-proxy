@@ -163,6 +163,6 @@ class ProxyController extends Controller
             return response()->json(['message' => $re->getMessage()], 443);
         }
 
-        return response()->json(['data' => json_encode($rst)]);
+        return response()->json(['data' => $rst]);
     }
 }
