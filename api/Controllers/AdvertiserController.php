@@ -84,12 +84,10 @@ class AdvertiserController extends Controller
         return $this->doReport($request, $aid, [
             'line_item_id',
             'line_item_name',
-            'day',
             'insertion_order_id',
             'insertion_order_name',
             'campaign_id',
             'campaign_name',
-            'advertiser_id',
             'imps',
             'imps_viewed',
             'clicks',
@@ -156,8 +154,6 @@ class AdvertiserController extends Controller
     public function reportSummary(Request $request, $aid)
     {
         return $this->doReport($request, $aid, [
-            'day',
-            'advertiser_id',
             'imps',
             'imps_viewed',
             'clicks',
@@ -249,6 +245,11 @@ class AdvertiserController extends Controller
             return response()->json(['error' => 'Not authorized'], 403);
         }
 
+        // always include day column as first column
+        $columns = array_diff($columns, array('day'));
+        array_unshift($columns, 'day');
+        \Log::info($columns);
+
         $reportId = $request->query('report_id');
         if (!isset($reportId)) {
             // select from report folder
@@ -314,13 +315,16 @@ class AdvertiserController extends Controller
         $csv    = array();
         foreach ($data as $row) {
             if (count($row) == $hc) {
-                $csv[] = array_combine($header, $row);
+                $crow        = array_combine($header, $row);
+                $crow['day'] = preg_replace('/\-+/', '', $crow['day']);
+                $csv[]       = $crow;
             }
         }
 
         return response()
             ->json([
                 'id' => $reportId,
+                'advertiser_id' => $aid,
                 'req' => $param,
                 'recordsTotal' => count($csv),
                 'data' => $csv
