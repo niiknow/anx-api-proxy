@@ -36,4 +36,7 @@ composer app:package
 - `API_KEYS`=set this to secure your api with `X-API-Key` header
 - `REPORT_KEY`=set this to authenticate with report download
 
+# Note
+At the moment, we really have no reason for having a database since this is only use as a Proxy.
+
 # MIT
