@@ -16,7 +16,8 @@
         "yajra/laravel-datatables-oracle": "~9.0",
         "zircote/swagger-php": "^3.0",
         "niiknow/laratt": "^1.4",
-        "f3ath/appnexus": "^0.4.0"
+        "f3ath/appnexus": "^0.4.0",
+        "rachidlaasri/laravel-installer": "^4.0"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

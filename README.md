@@ -22,7 +22,7 @@ This service simplify AppNexus communication with API Key(s).  It also simplify 
 8. after `valet link anx-api-proxy`, visit [anx-api-proxy.test/](http://anx-api-proxy.test) or npm run watch
 9. visit [anx-api-proxy.test/api/documentation](http://anx-api-proxy.test/api/documentation) for api docs
 
-**Production Deployment**
+## Production Deployment
 1. Package the project
 ```
 composer app:package
