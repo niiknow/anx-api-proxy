@@ -68,10 +68,12 @@
             "rm -f storage/framework/sessions/*",
             "npm run production",
             "composer update",
-            "tar -X './.packageignore' -zcvf ./storage/build/dist.tar.gz ./"
+            "COPYFILE_DISABLE=1 tar -X './.packageignore' -zcvf ./storage/build/dist.tar.gz ./"
         ],
         "app:production": [
             "composer app:clear",
+            "chmod -R 775 bootstrap/",
+            "chmod -R 775 storage/",
             "echo 'composer install --no-dev --optimize-autoloader'"
         ],
         "docker:clear": [

@@ -1,17 +1,15 @@
 <?php
-
 namespace Api\Controllers;
 
 use Api\Controllers\Controller;
 use Api\Extra\AppNexusService;
-use App\Exceptions\GeneralException;
-
-use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class ProxyController extends Controller
 {
+    /**
+     * @var mixed
+     */
     protected $anx;
 
     /**
@@ -151,7 +149,6 @@ class ProxyController extends Controller
      *   )
      * )
      */
-
     public function index(Request $request, $path)
     {
         $path = trim($path, '/');

@@ -1,11 +1,11 @@
 <?php
-
 namespace Api\Extra;
-
-use Illuminate\Http\Request;
 
 trait ReportKeyTrait
 {
+    /**
+     * @param $key
+     */
     protected function isValidKey($key)
     {
         $myKey = config('admin.report_key', '');

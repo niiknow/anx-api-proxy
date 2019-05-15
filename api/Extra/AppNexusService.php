@@ -1,12 +1,8 @@
 <?php
-
 namespace Api\Extra;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use F3\AppNexusClient\AppNexusClient;
-
 use Api\Extra\CacheTokenStorage;
+use F3\AppNexusClient\AppNexusClient;
 
 class AppNexusService
 {
@@ -30,6 +26,19 @@ class AppNexusService
     }
 
     /**
+     * @param  $method
+     * @param  $path
+     * @param  array     $post
+     * @return mixed
+     */
+    public function call($method, $path, array $post = [])
+    {
+        $rst = $this->api->call($method, $path, $post);
+
+        return $rst;
+    }
+
+    /**
      * Allow for unit test debugging.
      *
      * @return boolean
@@ -37,11 +46,5 @@ class AppNexusService
     public function isDebug()
     {
         return false;
-    }
-
-    public function call($method, $path, array $post = array())
-    {
-        $rst = $this->api->call($method, $path, $post);
-        return $rst;
     }
 }
