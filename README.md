@@ -22,7 +22,7 @@ This service simplify AppNexus communication with API Key(s).  It also simplify 
 8. after `valet link anx-api-proxy`, visit [anx-api-proxy.test/](http://anx-api-proxy.test) or npm run watch
 9. visit [anx-api-proxy.test/api/documentation](http://anx-api-proxy.test/api/documentation) for api docs
 
-## Production Deployment
+## Shared Hosting Deployment
 1. Package the project
 ```
 composer app:package
@@ -39,21 +39,31 @@ composer app:package
 6. Visit `http://anx-api-proxy.niiknow.org/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-1.png?raw=true)
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-2.png?raw=true)
-7. Follow the installation wizard.  Fill in the necessary `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` that you've taken note earlier.  Make sure you fill in everything such as (`APP_URL`, `APP_DOMAIN`, `APP_DEBUG`, etc...) and not just the database values.  Then click `save and install`, this will perform database initial migration for you.
+7. Follow the installation wizard.  Fill in the necessary `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` that you've taken note earlier.  Make sure you fill in everything such as (`APP_URL`, `APP_DOMAIN`, `APP_DEBUG`, etc...) and not just the database values.  Then click `save .env`, you want to make sure you save your changes.  Then click `save and install`, this will perform database initial migration for you.  Then click the `click here to exit` button to complete the installation.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-1.png?raw=true)
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-2.png?raw=true)
-8. Congratulation, you're all set!
+If you get the above issue, this mean `exec` is disabled and you have to manually edit your `.env` file.
+8. Congratulation, you're all set!  You can always update your `.env` file now if you need to make any additional changes.
 
-Install on main/root domain:
+### Troubleshooting
+If you get redirect to `/install` and the page is blank.  Check your cpanel error log for details.  Make sure you pick the correct php version.  Some older server default to `php5.6` instead of `php7+`.
+
+If you have an issue and need to restart installation, simply delete the file `storage/installed` and visit `/install` again.
+
+** TO UPDATE/UPGRADE **
+1. run `composer app:package` again.
+2. Then visit your site `/update` URL.
+
+### Installation on main/root domain
 > If not hosting as sub-domain, pick one of two options: 
-1. Add/update `.htaccess` file in you root domain hosting folder.  This is either  `public_html` or `www` folder depend on hosting provider.
+1. Add/update `.htaccess` file in you root domain hosting folder with the content below.  This is either  `public_html` or `www` folder depend on hosting provider.
 ```
 RewriteEngine on
 RewriteCond %{REQUEST_URI} !^public
 RewriteRule ^(.*)$ public/$1 [L]
 ```
 
-2. Extract content to your home folder `/home/{user}` and move/copy the content of `public` folder to either `public_html` or `www` folder depend on hosting provider.
+2. Or extract `dist.zip` to your home folder `/home/{user}` and move/copy the content of `public` folder to either `public_html` or `www` folder depend on hosting provider.
 
 > Special files that make installation on shared hosting possible
 - public/init.php
