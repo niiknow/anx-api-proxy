@@ -27,10 +27,30 @@ This service simplify AppNexus communication with API Key(s).  It also simplify 
 ```
 composer app:package
 ```
-2. Upload the resulting file in `storage/build/dist.tar.gz` to your server and unpack/extract.
-3. Create the necessary database on your server and take note of the database credentials.
-4. Visit `your-api.example.com/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
-5. Congratulation, you're all set!
+2. Create the necessary database and user on your server.  Take note of the database credentials; we will use it on `step 7` below.
+3. Create sub-domain and its folder, example: `anx-api-proxy.niiknow.org` with folder as `/home/{user}/anx-api-proxy.niiknow.org`
+4. Update your hosting folder as `/home/{user}/anx-api-proxy.niiknow.org/public`
+5. Upload the resulting file in `storage/build/dist.zip` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
+6. Visit `http://anx-api-proxy.niiknow.org/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
+7. Follow the installation wizard.  Fill in the necessary `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` that you've taken note earlier.  Make sure you fill in everything such as (`APP_URL`, `APP_DOMAIN`, `APP_DEBUG`, etc...) and not just the database values.  Then click `save and install`, this will perform database initial migration for you.
+8. Congratulation, you're all set!
+
+Install on main/root domain:
+> If not hosting as sub-domain, pick one of two options: 
+1. Add/update `.htaccess` file in you root domain hosting folder.  This is either  `public_html` or `www` folder depend on hosting provider.
+```
+RewriteEngine on
+RewriteCond %{REQUEST_URI} !^public
+RewriteRule ^(.*)$ public/$1 [L]
+```
+
+2. Extract content to your home folder `/home/{user}` and move/copy the content of `public` folder to either `public_html` or `www` folder depend on hosting provider.
+
+> Special files that make installation on shared hosting possible
+- public/init.php
+- .env.example
+- composer.json (note: `app:clear` and `app:package`)
+- the `rachidlaasri/laravel-installer` package
 
 **Configuration/env Note**
 - `API_KEYS`=set this to secure your api with `X-API-Key` header

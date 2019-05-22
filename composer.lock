@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "3.93.9",
+            "version": "3.94.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "047622ae51d49a89f4045c2daa138c2b47d2e089"
+                "reference": "759a565285324d2248b6ee783de541ce65bddd46"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/047622ae51d49a89f4045c2daa138c2b47d2e089",
-                "reference": "047622ae51d49a89f4045c2daa138c2b47d2e089",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/759a565285324d2248b6ee783de541ce65bddd46",
+                "reference": "759a565285324d2248b6ee783de541ce65bddd46",
                 "shasum": ""
             },
             "require": {
@@ -87,7 +87,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2019-05-14T18:16:56+00:00"
+            "time": "2019-05-21T18:29:47+00:00"
         },
         {
             "name": "darkaonline/l5-swagger",
@@ -907,16 +907,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.8.17",
+            "version": "v5.8.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2"
+                "reference": "9f571be04435883dab6f23ecfadb204273b7f527"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/33c04dd2a431adeeb49926a4f2b20590cc033ca2",
-                "reference": "33c04dd2a431adeeb49926a4f2b20590cc033ca2",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/9f571be04435883dab6f23ecfadb204273b7f527",
+                "reference": "9f571be04435883dab6f23ecfadb204273b7f527",
                 "shasum": ""
             },
             "require": {
@@ -1050,7 +1050,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2019-05-14T16:02:41+00:00"
+            "time": "2019-05-21T16:40:34+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -1184,16 +1184,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "1.0.51",
+            "version": "1.0.52",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "755ba7bf3fb9031e6581d091db84d78275874396"
+                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/755ba7bf3fb9031e6581d091db84d78275874396",
-                "reference": "755ba7bf3fb9031e6581d091db84d78275874396",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/c5a5097156387970e6f0ccfcdf03f752856f3391",
+                "reference": "c5a5097156387970e6f0ccfcdf03f752856f3391",
                 "shasum": ""
             },
             "require": {
@@ -1264,7 +1264,7 @@
                 "sftp",
                 "storage"
             ],
-            "time": "2019-03-30T13:22:34+00:00"
+            "time": "2019-05-20T20:21:14+00:00"
         },
         {
             "name": "league/flysystem-aws-s3-v3",
@@ -1681,16 +1681,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "2.17.1",
+            "version": "2.18.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "96acbc0c03782e8115156dd4dd8b736267155066"
+                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/96acbc0c03782e8115156dd4dd8b736267155066",
-                "reference": "96acbc0c03782e8115156dd4dd8b736267155066",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/8322b7bd1805be31867c13bf3cdaab948a0dd406",
+                "reference": "8322b7bd1805be31867c13bf3cdaab948a0dd406",
                 "shasum": ""
             },
             "require": {
@@ -1737,20 +1737,20 @@
                 "datetime",
                 "time"
             ],
-            "time": "2019-04-27T18:04:27+00:00"
+            "time": "2019-05-16T18:44:35+00:00"
         },
         {
             "name": "niiknow/laratt",
-            "version": "1.6.5",
+            "version": "1.6.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/niiknow/laratt.git",
-                "reference": "aff7b12c39a74366d52de581bd6a8b18bb5823fd"
+                "reference": "1ca5ffb91790726a6aa209de50eae30cd50452f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/niiknow/laratt/zipball/aff7b12c39a74366d52de581bd6a8b18bb5823fd",
-                "reference": "aff7b12c39a74366d52de581bd6a8b18bb5823fd",
+                "url": "https://api.github.com/repos/niiknow/laratt/zipball/1ca5ffb91790726a6aa209de50eae30cd50452f2",
+                "reference": "1ca5ffb91790726a6aa209de50eae30cd50452f2",
                 "shasum": ""
             },
             "require": {
@@ -1798,7 +1798,7 @@
                 "laratt",
                 "niiknow"
             ],
-            "time": "2019-05-10T22:27:29+00:00"
+            "time": "2019-05-16T17:36:36+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -2598,16 +2598,16 @@
         },
         {
             "name": "swagger-api/swagger-ui",
-            "version": "v3.22.1",
+            "version": "v3.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swagger-api/swagger-ui.git",
-                "reference": "c38bf85e34ee46b2ad399b25c4c73668dc0d7e1d"
+                "reference": "54c045fd472a740e7ae3d26148708455fa6358b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/c38bf85e34ee46b2ad399b25c4c73668dc0d7e1d",
-                "reference": "c38bf85e34ee46b2ad399b25c4c73668dc0d7e1d",
+                "url": "https://api.github.com/repos/swagger-api/swagger-ui/zipball/54c045fd472a740e7ae3d26148708455fa6358b4",
+                "reference": "54c045fd472a740e7ae3d26148708455fa6358b4",
                 "shasum": ""
             },
             "type": "library",
@@ -2651,7 +2651,7 @@
                 "swagger",
                 "ui"
             ],
-            "time": "2019-04-13T01:40:36+00:00"
+            "time": "2019-05-22T01:36:53+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3952,16 +3952,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.2.0",
+            "version": "v9.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "177b4360031ba1e7c040622b12cfd563d33274c6"
+                "reference": "62f14b28ed15bb2c419489ff196fed3884ff8613"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/177b4360031ba1e7c040622b12cfd563d33274c6",
-                "reference": "177b4360031ba1e7c040622b12cfd563d33274c6",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/62f14b28ed15bb2c419489ff196fed3884ff8613",
+                "reference": "62f14b28ed15bb2c419489ff196fed3884ff8613",
                 "shasum": ""
             },
             "require": {
@@ -4019,7 +4019,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-05-09T02:07:53+00:00"
+            "time": "2019-05-21T05:15:44+00:00"
         },
         {
             "name": "zircote/swagger-php",
