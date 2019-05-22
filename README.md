@@ -28,11 +28,20 @@ This service simplify AppNexus communication with API Key(s).  It also simplify 
 composer app:package
 ```
 2. Create the necessary database and user on your server.  Take note of the database credentials; we will use it on `step 7` below.
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step2.png?raw=true)
 3. Create sub-domain and its folder, example: `anx-api-proxy.niiknow.org` with folder as `/home/{user}/anx-api-proxy.niiknow.org`
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step3.png?raw=true)
 4. Update your hosting folder as `/home/{user}/anx-api-proxy.niiknow.org/public`
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-1.png?raw=true)
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-2.png?raw=true)
 5. Upload the resulting file in `storage/build/dist.zip` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step5.png?raw=true)
 6. Visit `http://anx-api-proxy.niiknow.org/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-1.png?raw=true)
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-2.png?raw=true)
 7. Follow the installation wizard.  Fill in the necessary `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` that you've taken note earlier.  Make sure you fill in everything such as (`APP_URL`, `APP_DOMAIN`, `APP_DEBUG`, etc...) and not just the database values.  Then click `save and install`, this will perform database initial migration for you.
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-1.png?raw=true)
+![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-2.png?raw=true)
 8. Congratulation, you're all set!
 
 Install on main/root domain:

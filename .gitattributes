@@ -8,6 +8,7 @@
 tests export-ignore
 tests/ export-ignore
 tests/**/* export-ignore
+storage/docs/**/* export-ignore
 .babelrc export-ignore
 .editorconfig export-ignore
 .eslintignore export-ignore
