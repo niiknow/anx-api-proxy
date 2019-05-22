@@ -34,7 +34,7 @@ composer app:package
 4. Update your hosting folder as `/home/{user}/anx-api-proxy.niiknow.org/public`
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-1.png?raw=true)
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-2.png?raw=true)
-5. Upload the resulting file in `storage/build/dist.zip` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
+5. Upload the resulting file in `dist.zip` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step5.png?raw=true)
 6. Visit `http://anx-api-proxy.niiknow.org/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-1.png?raw=true)

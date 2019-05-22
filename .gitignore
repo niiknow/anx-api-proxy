@@ -27,3 +27,4 @@ public/js/parts/*
 storage/installed
 docker-compose.yml
 ._*.png
+dist.zip

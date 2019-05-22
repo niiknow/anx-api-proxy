@@ -53,9 +53,9 @@
         "phpcs": "phpcs",
         "phpcs:fix": "phpcbf -w",
         "app:clear": [
-            "rm -rf storage/build",
-            "mkdir storage/build",
+            "rm -f dist.zip",
             "rm -f bootstrap/cache/config.php",
+            "rm -f storage/framework/sessions/*",
             "php artisan clear-compiled",
             "php artisan cache:clear",
             "php artisan config:clear",
@@ -65,11 +65,10 @@
         ],
         "app:package": [
             "composer app:clear",
-            "rm -f storage/framework/sessions/*",
             "npm run production",
             "composer update",
-            "deployStash=`git stash create`; git archive --worktree-attributes --format=zip -o ./storage/build/dist.zip ${deployStash:-HEAD}",
-            "zip -ur ./storage/build/dist.zip ./vendor"
+            "deployStash=`git stash create`; git archive --worktree-attributes --format=zip -o dist.zip ${deployStash:-HEAD}",
+            "zip -ur dist.zip ./vendor"
         ],
         "app:production": [
             "composer app:clear",
