@@ -42,7 +42,6 @@ composer app:package
 7. Follow the installation wizard.  Fill in the necessary `DB_DATABASE`, `DB_USERNAME`, and `DB_PASSWORD` that you've taken note earlier.  Make sure you fill in everything such as (`APP_URL`, `APP_DOMAIN`, `APP_DEBUG`, etc...) and not just the database values.  Then click `save .env`, you want to make sure you save your changes.  Then click `save and install`, this will perform database initial migration for you.  Then click the `click here to exit` button to complete the installation.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-1.png?raw=true)
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-2.png?raw=true)
-If you get the above issue, this mean `exec` is disabled and you have to manually edit your `.env` file.
 8. Congratulation, you're all set!  You can always update your `.env` file now if you need to make any additional changes.
 
 ### Troubleshooting
@@ -50,9 +49,10 @@ If you get redirect to `/install` and the page is blank.  Check your cpanel erro
 
 If you have an issue and need to restart installation, simply delete the file `storage/installed` and visit `/install` again.
 
-** TO UPDATE/UPGRADE **
-1. run `composer app:package` again.
-2. Then visit your site `/update` URL.
+**TO UPDATE/UPGRADE**
+1. run `composer app:package` again
+2. upload and extract like you've done in installation above
+2. then visit your site `/update` instead of `/install`
 
 ### Installation on main/root domain
 > If not hosting as sub-domain, pick one of two options: 
