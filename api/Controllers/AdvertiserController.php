@@ -40,7 +40,7 @@ class AdvertiserController extends Controller
         // always include day column as first column
         $columns = array_diff($columns, ['day']);
         array_unshift($columns, 'day');
-        \Log::info($columns);
+        // \Log::info($columns);
 
         $reportId = $request->query('report_id');
         if (!isset($reportId)) {
