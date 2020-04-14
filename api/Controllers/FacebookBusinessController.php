@@ -64,20 +64,68 @@ class FacebookBusinessController extends MyController
 
         $account  = $this->svc->getAccount($aid);
         $insights = $account->getInsights($columns, $params);
+        $data     = $this->transform($insights);
 
         return response()
             ->json([
                 'advertiser_id' => $aid,
                 'req'           => $params,
-                'data'          => $this->transform($insights)
+                'data'          => $data,
+                'recordsTotal'  => count($data)
             ])
             ->header('Cache-Control', 'max-age=86400, public');
     }
 
     /**
-     * @param  Request $request
-     * @param  $aid
-     * @return mixed
+     * @OA\Get(
+     *   path="/fbmedia/{aid}/report/campaign",
+     *   tags={"aid"},
+     *   summary="get fbmedia report by campaign",
+     *   @OA\Parameter(
+     *     name="aid",
+     *     in="path",
+     *     description="advertiser id",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="start",
+     *     in="query",
+     *     description="start date",
+     *     required=true,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="end",
+     *     in="query",
+     *     description="end date default as yesterday",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Parameter(
+     *     name="key",
+     *     in="query",
+     *     description="report api key",
+     *     required=false,
+     *     @OA\Schema(
+     *       type="string"
+     *     ),
+     *     style="form"
+     *   ),
+     *   @OA\Response(
+     *     response="default",
+     *     description="response object"
+     *   )
+     * )
      */
     public function reportByCampaign(Request $request, $aid)
     {
