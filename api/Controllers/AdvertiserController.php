@@ -265,7 +265,8 @@ class AdvertiserController extends Controller
             'imps_viewed',
             'view_measured_imps',
             'view_measurement_rate',
-            'view_rate'
+            'view_rate',
+            'spend'
         ]);
     }
 
@@ -331,7 +332,8 @@ class AdvertiserController extends Controller
             'imps_viewed',
             'view_measured_imps',
             'view_measurement_rate',
-            'view_rate'
+            'view_rate',
+            'spend'
         ]);
     }
 }

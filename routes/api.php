@@ -1,7 +1,7 @@
 <?php
 
 Route::group(['prefix' => 'v1'], function () {
-
+/*
     Route::group(['prefix' => 'proxy', 'middleware' => 'api'], function () {
         Route::match(
             ['get', 'post', 'put', 'delete'],
@@ -9,6 +9,7 @@ Route::group(['prefix' => 'v1'], function () {
             'ProxyController@index'
         )->where('path', '[\/\w\.-]*');
     });
+*/
 
     Route::get(
         '/advertiser/{aid}/report/line',
@@ -23,5 +24,10 @@ Route::group(['prefix' => 'v1'], function () {
     Route::get(
         '/advertiser/{aid}/report',
         'AdvertiserController@report'
+    );
+
+    Route::get(
+        '/fbmedia/{aid}/report/campaign',
+        'FacebookBusinessController@reportByCampaign'
     );
 });
