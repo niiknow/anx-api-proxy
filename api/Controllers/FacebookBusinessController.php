@@ -51,6 +51,10 @@ class FacebookBusinessController extends MyController
             $end_date = Carbon::parse($end);
         }
 
+        if ($aid === 3678438 || $aid === 'advertiser_id') {
+            $aid = 3195595760469797;
+        }
+
         $params = [
             'level'          => 'campaign',
             'limit'          => 999,
@@ -77,55 +81,9 @@ class FacebookBusinessController extends MyController
     }
 
     /**
-     * @OA\Get(
-     *   path="/fbmedia/{aid}/report/campaign",
-     *   tags={"aid"},
-     *   summary="get fbmedia report by campaign",
-     *   @OA\Parameter(
-     *     name="aid",
-     *     in="path",
-     *     description="advertiser id",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
-     *     name="start",
-     *     in="query",
-     *     description="start date",
-     *     required=true,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
-     *     name="end",
-     *     in="query",
-     *     description="end date default as yesterday",
-     *     required=false,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Parameter(
-     *     name="key",
-     *     in="query",
-     *     description="report api key",
-     *     required=false,
-     *     @OA\Schema(
-     *       type="string"
-     *     ),
-     *     style="form"
-     *   ),
-     *   @OA\Response(
-     *     response="default",
-     *     description="response object"
-     *   )
-     * )
+     * @param  Request $request
+     * @param  $aid
+     * @return mixed
      */
     public function reportByCampaign(Request $request, $aid)
     {

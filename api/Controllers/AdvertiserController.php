@@ -37,6 +37,10 @@ class AdvertiserController extends Controller
             return response()->json(['error' => 'Not authorized'], 403);
         }
 
+        if ($aid === 'advertiser_id') {
+            $aid = 3678438;
+        }
+
         // always include day column as first column
         $columns = array_diff($columns, ['day']);
         array_unshift($columns, 'day');
