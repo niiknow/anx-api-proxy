@@ -28,3 +28,5 @@ storage/installed
 docker-compose.yml
 ._*.png
 dist.zip
+dist.tar
+dist.tar.gz
