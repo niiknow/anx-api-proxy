@@ -270,7 +270,15 @@ class AdvertiserController extends Controller
             'view_measured_imps',
             'view_measurement_rate',
             'view_rate',
-            'spend'
+            'spend',
+            'video_skips',
+            'video_starts',
+            'video_25_pcts',
+            'video_50_pcts',
+            'video_75_pcts',
+            'video_completions',
+            'video_served',
+            'video_errors'
         ]);
     }
 
@@ -337,7 +345,15 @@ class AdvertiserController extends Controller
             'view_measured_imps',
             'view_measurement_rate',
             'view_rate',
-            'spend'
+            'spend',
+            'video_skips',
+            'video_starts',
+            'video_25_pcts',
+            'video_50_pcts',
+            'video_75_pcts',
+            'video_completions',
+            'video_served',
+            'video_errors'
         ]);
     }
 }
