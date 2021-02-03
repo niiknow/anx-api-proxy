@@ -1,5 +1,5 @@
-const path                = require('path');
-const mix                 = require('laravel-mix');
+const path = require('path');
+const mix  = require('laravel-mix');
 
 const source = 'resources';
 const public = 'public';
@@ -11,21 +11,6 @@ mix.webpackConfig({
     'jquery': 'jQuery',
     'vue': 'Vue'
   },
-  module: {
-    rules: [
-      {
-        enforce: 'pre',
-        test: /\.(vue|js)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'eslint-loader',
-        options: {
-          fix: false,
-          cache: false,
-          formatter: require('eslint-friendly-formatter')
-        }
-      }
-    ]
-  },
   devServer: { overlay: true },
   devtool: 'source-map',
   resolve: {
@@ -35,15 +20,13 @@ mix.webpackConfig({
       '~': path.resolve(__dirname, `${ source }/js`),
       Components: path.resolve(__dirname, `${ source }/js/components`),
       Layouts: path.resolve(__dirname, `${ source }/js/layouts`),
-      Pages: path.resolve(__dirname, `${ source }/js/pages`)
+      Views: path.resolve(__dirname, `${ source }/js/views`)
     }
   }
 });
 
-mix.js(`${ source }/js/myapp.js`, `${ public }/js`);
-mix.sass(`${ source }/sass/myapp.scss`, `${ public }/css`, {
-  outputStyle: mix.inProduction() ? 'compact' : 'expanded'
-});
+mix.js(`${ source }/js/myapp.js`, `${ public }/js`).extract().vue();
+mix.sass(`${ source }/sass/myapp.scss`, `${ public }/css`);
 mix.sourceMaps();
 mix.browserSync({
   proxy: 'anx-api-proxy.test',
@@ -58,13 +41,5 @@ mix.browserSync({
   open: 'external'
 });
 
-mix.extract([
-  'vue'
-]);
-
-mix.version();
-if (mix.inProduction()) {
-  mix.disableNotifications();
-}
-
+mix.version().disableNotifications();
 
