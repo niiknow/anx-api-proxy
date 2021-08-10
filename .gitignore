@@ -30,3 +30,4 @@ docker-compose.yml
 dist.zip
 dist.tar
 dist.tar.gz
+.phpunit.result.cache
