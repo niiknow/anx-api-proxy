@@ -19,7 +19,7 @@
         "niiknow/laratt": "^1.9.2",
         "f3ath/appnexus": "^0.4.0",
         "rachidlaasri/laravel-installer": "^4.1.0",
-        "facebook/php-business-sdk": "^11.0"
+        "facebook/php-business-sdk": "^12.0"
     },
     "require-dev": {
         "facade/ignition": "^2.11",
