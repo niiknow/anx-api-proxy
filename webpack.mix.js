@@ -1,45 +1,17 @@
-const path = require('path');
-const mix  = require('laravel-mix');
+const mix = require('laravel-mix');
 
-const source = 'resources';
-const public = 'public';
+/*
+ |--------------------------------------------------------------------------
+ | Mix Asset Management
+ |--------------------------------------------------------------------------
+ |
+ | Mix provides a clean, fluent API for defining some Webpack build steps
+ | for your Laravel applications. By default, we are compiling the CSS
+ | file for the application as well as bundling up all the JS files.
+ |
+ */
 
-mix.setPublicPath(path.normalize(public));
-
-mix.webpackConfig({
-  externals: {
-    'jquery': 'jQuery',
-    'vue': 'Vue'
-  },
-  devServer: { overlay: true },
-  devtool: 'source-map',
-  resolve: {
-    /* Path Shortcuts */
-    alias:{
-      /* root */
-      '~': path.resolve(__dirname, `${ source }/js`),
-      Components: path.resolve(__dirname, `${ source }/js/components`),
-      Layouts: path.resolve(__dirname, `${ source }/js/layouts`),
-      Views: path.resolve(__dirname, `${ source }/js/views`)
-    }
-  }
-});
-
-mix.js(`${ source }/js/myapp.js`, `${ public }/js`).extract().vue();
-mix.sass(`${ source }/sass/myapp.scss`, `${ public }/css`);
-mix.sourceMaps();
-mix.browserSync({
-  proxy: 'anx-api-proxy.test',
-  host: 'anx-api-proxy.test',
-  files: [
-    `${ source }/views/**/*.php`,
-    `${ public }/js/**/*.js`,
-    `${ public }/css/**/*.css`
-  ],
-  browser: 'firefox',
-  ghostMode: false,
-  open: 'external'
-});
-
-mix.version().disableNotifications();
-
+mix.js('resources/js/app.js', 'public/js')
+    .postCss('resources/css/app.css', 'public/css', [
+        //
+    ]);
