@@ -23,7 +23,7 @@ This service simplify AppNexus communication with API Key(s).  It also simplify 
 9. visit [anx-api-proxy.test/api/documentation](http://anx-api-proxy.test/api/documentation) for api docs
 
 ## Shared Hosting Deployment
-1. Package the project
+1. Package the project, this will create `dist.tar` file
 ```
 composer app:package
 ```
@@ -34,7 +34,7 @@ composer app:package
 4. Update your hosting folder as `/home/{user}/anx-api-proxy.niiknow.org/public`
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-1.png?raw=true)
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step4-2.png?raw=true)
-5. Upload the resulting file in `dist.zip` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
+5. Upload the resulting file in `dist.tar` to your sub-domain folder `/home/user/anx-api-proxy.niiknow.org/` (note **not** your public folder) and extract it to the current director.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step5.png?raw=true)
 6. Visit `http://anx-api-proxy.niiknow.org/init.php` to initialize the project.  This will update required permissions for `storage/framework/`, `storage/logs/`, and `bootstrap/cache/` and create the `.env` file from `.env.example` file.  If it doesn't automatically redirect you to `/install`, then visit `/install` and complete the setup to finalize your `.env` file with the necessary database and other configuration.  Take note of the `API_KEYS` that was generated or provide your own key to be use with `X-API-Key` header.  Take note of `REPORT_KEY` for report authentication.
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step6-1.png?raw=true)
@@ -44,36 +44,20 @@ composer app:package
 ![](https://raw.githubusercontent.com/niiknow/anx-api-proxy/master/storage/docs/step7-2.png?raw=true)
 8. Congratulation, you're all set!  You can always update your `.env` file now if you need to make any additional changes.
 
-### Troubleshooting
-If you get redirect to `/install` and the page is blank.  Check your cpanel error log for details.  Make sure you pick the correct php version.  Some older server default to `php5.6` instead of `php7+`.
-
-If you have an issue and need to restart installation, simply delete the file `storage/installed` and visit `/install` again.
-
 **TO UPDATE/UPGRADE**
 1. run `composer app:package` again
 2. upload and extract like you've done in installation above
-2. then visit your site `/update` instead of `/install`
-
-### Installation on main/root domain
-> If not hosting as sub-domain, pick one of two options: 
-1. Add/update `.htaccess` file in you root domain hosting folder with the content below.  This is either  `public_html` or `www` folder depend on hosting provider.
-```
-RewriteEngine on
-RewriteCond %{REQUEST_URI} !^public
-RewriteRule ^(.*)$ public/$1 [L]
-```
-
-2. Or extract `dist.zip` to your home folder `/home/{user}` and move/copy the content of `public` folder to either `public_html` or `www` folder depend on hosting provider.
-
-> Special files that make installation on shared hosting possible
-- public/init.php
-- .env.example
-- composer.json (note: `app:clear` and `app:package`)
-- the `rachidlaasri/laravel-installer` package
+3. public/init.php - execute this by visiting example.app/init.php in the browser
+4. then visit your site `/update` instead of `/install`
 
 **Configuration/env Note**
 - `API_KEYS`=set this to secure your api with `X-API-Key` header
 - `REPORT_KEY`=set this to authenticate with report download
+
+### Troubleshooting
+If you get redirect to `/install` and the page is blank.  Check your cpanel error log for details.  Make sure you pick the correct php version.  Some older server default to `php7+` instead of `php8+`.
+
+If you have an issue and need to restart installation, simply delete the file `storage/installed` and visit `/install` again.
 
 # Note
 At the moment, we really have no reason for having a database since this is only use as a Proxy.
