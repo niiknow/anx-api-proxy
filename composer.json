@@ -55,7 +55,7 @@
         "phpcs": "phpcs",
         "phpcs:fix": "phpcbf -w",
         "app:clear": [
-            "rm -f dist-*.tar",
+            "rm -f dist.tar",
             "rm -f bootstrap/cache/config.php",
             "rm -f storage/framework/sessions/*",
             "php artisan clear-compiled",

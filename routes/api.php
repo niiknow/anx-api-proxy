@@ -30,4 +30,9 @@ Route::group(['prefix' => 'v1'], function () {
         '/fbmedia/{aid}/report/campaign',
         'FacebookBusinessController@reportByCampaign'
     );
+
+    Route::get(
+        '/brxevent/{aid}/rawlog',
+        'BrickEventController@rawlog'
+    );
 });

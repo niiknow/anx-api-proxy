@@ -17,7 +17,7 @@ class AdvertiserController extends Controller
     protected $anx;
 
     /**
-     * Initialize an instance of ProxyController
+     * Initialize an instance of AdvertiserController
      *
      * @param AppNexusService $anx the AppNexus service
      */
