@@ -13,21 +13,6 @@ class BrickEventController extends Controller
     use ReportKeyTrait;
 
     /**
-     * @var mixed
-     */
-    protected $svc;
-
-    /**
-     * Initialize an instance of BrickEventController
-     *
-     * @param BrickEventService $svc the BrickEvent service
-     */
-    public function __construct(BrickEventService $svc)
-    {
-        $this->svc = $svc;
-    }
-
-    /**
      * @param Request    $request
      * @param $aid
      * @param $columns
@@ -55,9 +40,7 @@ class BrickEventController extends Controller
             $end_date = Carbon::parse($end);
         }
 
-        $url        = 'https://console.brickinc.net/api/v1/urchinevent/query/';
-        $start_date = now()->subDays(30)->format('Y-m-d') . ' 23:59:59';
-        $end_date   = now()->format('Y-m-d') . ' 23:59:59';
+        $url  = 'https://console.brickinc.net/api/v1/urchinevent/query/';
 
         $query = [
             'x-api-key' => env('BRICK_API_KEY'),
@@ -66,18 +49,16 @@ class BrickEventController extends Controller
             'filter[]'  => 'event_at:bt:'.$start_date->format('Y-m-d').'|'.$end_date->format('Y-m-d'),
             'sort[]'    => 'event_at|asc',
             'limit'     => '9999'
-        ]
+        ];
         $response = Http::get('https://console.brickinc.net/api/v1/urchinevent/query/', $query);
         $result   = $response->json();
 
-        return response()
-            ->json($result)
-            ->header('Cache-Control', 'max-age=86400, public');
+        return response()->json($result, $response->status());
     }
 
     /**
      * @OA\Get(
-     *   path="/advertiser/{aid}/rawlogs",
+     *   path="/advertiser/{aid}/rawlog",
      *   tags={"advertiser"},
      *   summary="get advertiser report by line item",
      *   @OA\Parameter(
@@ -86,7 +67,7 @@ class BrickEventController extends Controller
      *     description="advertiser id",
      *     required=true,
      *     @OA\Schema(
-     *       type="integer"
+     *       type="string"
      *     ),
      *     style="form"
      *   ),
@@ -126,7 +107,7 @@ class BrickEventController extends Controller
      *   )
      * )
      */
-    public function rawlogs(Request $request, $aid)
+    public function rawlog(Request $request, $aid)
     {
         return $this->doReport($request, $aid);
     }
