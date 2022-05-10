@@ -1,6 +1,6 @@
 <?php
 
-Route::group(['prefix' => 'v1'], function () {
+Route::group(['prefix' => 'v1', 'middleware' => 'gpcachepage'], function () {
 /*
     Route::group(['prefix' => 'proxy', 'middleware' => 'api'], function () {
         Route::match(

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f06ffd781c20815e947f85460063a55d",
+    "content-hash": "7e6d23c7802db092f03d6a9bec9a6346",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1081,6 +1081,62 @@
                 }
             ],
             "time": "2022-02-20T15:07:15+00:00"
+        },
+        {
+            "name": "glaivepro/cachepage",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/GlaivePro/CachePage.git",
+                "reference": "03ec764fafbc96c401eba42b295993079e6c0793"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/GlaivePro/CachePage/zipball/03ec764fafbc96c401eba42b295993079e6c0793",
+                "reference": "03ec764fafbc96c401eba42b295993079e6c0793",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=5.5",
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "GlaivePro\\CachePage\\CachePageServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "GlaivePro\\CachePage\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Juris Evertovskis",
+                    "email": "juris@glaive.pro",
+                    "homepage": "http://glaive.pro",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Laravel middleware for full page caching.",
+            "homepage": "https://github.com/GlaivePro/CachePage",
+            "keywords": [
+                "caching",
+                "laravel",
+                "middleware"
+            ],
+            "support": {
+                "issues": "https://github.com/GlaivePro/CachePage/issues",
+                "source": "https://github.com/GlaivePro/CachePage/tree/1.5.1"
+            },
+            "time": "2021-06-23T13:58:46+00:00"
         },
         {
             "name": "graham-campbell/result-type",

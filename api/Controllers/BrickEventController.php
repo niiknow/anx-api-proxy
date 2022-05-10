@@ -6,6 +6,7 @@ use Api\Extra\BrickEventService;
 use Api\Extra\ReportKeyTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class BrickEventController extends Controller
 {
@@ -41,16 +42,36 @@ class BrickEventController extends Controller
             $aid = 'brick';
         }
 
-        // check status
-        $path = 'report?id=' . $reportId;
-        $pd   = $this->svc->call('GET', $path);
+        $start_date = Carbon::now()->subDays(1);
+        $end_date   = Carbon::now();
 
+        $start = $request->query('start');
+        if (isset($start)) {
+            $start_date = Carbon::parse($start);
+        }
+
+        $end = $request->query('end');
+        if (isset($end)) {
+            $end_date = Carbon::parse($end);
+        }
+
+        $url        = 'https://console.brickinc.net/api/v1/urchinevent/query/';
+        $start_date = now()->subDays(30)->format('Y-m-d') . ' 23:59:59';
+        $end_date   = now()->format('Y-m-d') . ' 23:59:59';
+
+        $query = [
+            'x-api-key' => env('BRICK_API_KEY'),
+            'x-tenant'  => $aid,
+            'select'    => 'id,event_at,event_category,event_label,event_value,event_x,event_y,referer,page,utm_campaign,utm_source,utm_medium,utm_content,utm_term',
+            'filter[]'  => 'event_at:bt:'.$start_date->format('Y-m-d').'|'.$end_date->format('Y-m-d'),
+            'sort[]'    => 'event_at|asc',
+            'limit'     => '9999'
+        ]
+        $response = Http::get('https://console.brickinc.net/api/v1/urchinevent/query/', $query);
+        $result   = $response->json();
 
         return response()
-            ->json([
-                'recordsTotal'  => 1,
-                'data'          => $pd
-            ])
+            ->json($result)
             ->header('Cache-Control', 'max-age=86400, public');
     }
 
