@@ -45,13 +45,14 @@ class BrickEventController extends Controller
         $query = [
             'x-api-key' => env('BRICK_API_KEY'),
             'x-tenant'  => $aid,
-            'select'    => 'id,event_at,event_category,event_label,event_value,event_x,event_y,referer,page,utm_campaign,utm_source,utm_medium,utm_content,utm_term',
+            'select'    => 'id,event_at,event_category,event_label,event_value,event_x,event_y,event_z,referer,page,utm_campaign,utm_source,utm_medium,utm_content,utm_term',
             'filter[]'  => 'event_at:bt:'.$start_date->format('Y-m-d').'|'.$end_date->format('Y-m-d'),
             'sort[]'    => 'event_at|asc',
             'limit'     => '9999'
         ];
         $response = Http::get('https://console.brickinc.net/api/v1/urchinevent/query/', $query);
         $result   = $response->json();
+        $result   = $this->transform($result);
 
         return response()->json($result, $response->status());
     }
@@ -110,5 +111,29 @@ class BrickEventController extends Controller
     public function rawlog(Request $request, $aid)
     {
         return $this->doReport($request, $aid);
+    }
+
+
+    /**
+     * @param $json
+     */
+    protected function transform(&$json)
+    {
+        //$myInsight = json_decode(json_encode($insights->getResponse()->getContent()['data']));
+
+        $data = $json['data'];
+
+        $rows = [];
+        foreach ($data as $key => $row) {
+            // massage the row
+            $newDate = \Carbon\Carbon::parse($row['event_at']);
+            // $row['event_at'] = $newDate->timestamp;
+            // output friendly hour and minutes date that can be display inside of google data studio dashboard
+            $row['event_hm'] = $newDate->format('M d, Y, h:m A');
+            $rows[] = $row;
+        }
+        $json['data'] = $rows;
+
+        return $json;
     }
 }
