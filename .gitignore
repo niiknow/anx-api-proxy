@@ -31,3 +31,4 @@ dist.zip
 dist.tar
 dist.tar.gz
 .phpunit.result.cache
+.php_cs.cache

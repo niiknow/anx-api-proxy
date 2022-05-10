@@ -109,6 +109,7 @@
             "vendor/",
             ".DS_Store",
             ".env",
+            ".php_cs.cache",
             ".phpunit.result.cache",
             "*.md",
             "*.xml",
