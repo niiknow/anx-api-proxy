@@ -99,7 +99,6 @@
             "dist/",
             "playbook/",
             "public/.tmb/",
-            "node_modules/",
             "storage/debugbar/",
             "storage/logs/laravel.log",
             "node_modules/",
@@ -110,8 +109,7 @@
             ".php_cs.cache",
             ".phpunit.result.cache",
             "*.md",
-            "*.xml",
-            "webqueue.sh"
+            "*.xml"
         ]
     },
     "extra": {
