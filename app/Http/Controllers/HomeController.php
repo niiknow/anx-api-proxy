@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -25,7 +26,7 @@ class HomeController extends Controller
             'csrfToken'    => csrf_token(),
             'env'          => config('app.env'),
             'api_endpoint' => config('app.api'),
-            'appName'      => config('app.name')
+            'appName'      => config('app.name'),
         ];
 
         return view('home', ['appSettings' => $data]);

@@ -7,12 +7,12 @@ return [
         'bucket'  => env('AUDIT_BUCKET'),
         'include' => [
             'table'  => '.*',
-            'tenant' => '.*'
+            'tenant' => '.*',
         ],
         'exclude' => [
             'table'  => '(log.*|cache)',
-            'tenant' => null
+            'tenant' => null,
         ],
     ],
-    'import_limit' => 9999
+    'import_limit' => 9999,
 ];

@@ -1,4 +1,5 @@
 <?php
+
 namespace Api\Extra\Middlewares;
 
 use Closure;
@@ -15,7 +16,7 @@ class RedirectDoubleSlashes
      */
     public function handle($request, Closure $next)
     {
-        $str      = $request->getRequestUri();
+        $str = $request->getRequestUri();
         $replaced = preg_replace('#/+#', '/', $str);
         if ($str !== $replaced) {
             return Redirect::to($replaced, 301);

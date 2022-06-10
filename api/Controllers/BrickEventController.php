@@ -1,8 +1,7 @@
 <?php
+
 namespace Api\Controllers;
 
-use Api\Controllers\Controller;
-use Api\Extra\BrickEventService;
 use Api\Extra\ReportKeyTrait;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -19,7 +18,7 @@ class BrickEventController extends Controller
      */
     public function doReport(Request $request, $aid)
     {
-        if (!$this->isValidKey($request->query('key'))) {
+        if (! $this->isValidKey($request->query('key'))) {
             return response()->json(['error' => 'Not authorized'], 403);
         }
 
@@ -28,7 +27,7 @@ class BrickEventController extends Controller
         }
 
         $start_date = Carbon::now()->subDays(1);
-        $end_date   = Carbon::now();
+        $end_date = Carbon::now();
 
         $start = $request->query('start');
         if (isset($start)) {
@@ -40,19 +39,22 @@ class BrickEventController extends Controller
             $end_date = Carbon::parse($end);
         }
 
-        $url  = 'https://console.brickinc.net/api/v1/urchinevent/query/';
+        $url = 'https://console.brickinc.net/api/v1/urchinevent/query/';
 
+        // @codingStandardsIgnoreStart
         $query = [
             'x-api-key' => env('BRICK_API_KEY'),
             'x-tenant'  => $aid,
             'select'    => 'id,event_at,event_category,event_label,event_value,event_x,event_y,event_z,referer,page,utm_campaign,utm_source,utm_medium,utm_content,utm_term',
             'filter[]'  => 'event_at:bt:'.$start_date->format('Y-m-d').'|'.$end_date->format('Y-m-d'),
             'sort[]'    => 'event_at|asc',
-            'limit'     => '9999'
+            'limit'     => '9999',
         ];
+        // @codingStandardsIgnoreEnd
+
         $response = Http::get('https://console.brickinc.net/api/v1/urchinevent/query/', $query);
-        $result   = $response->json();
-        $result   = $this->transform($result);
+        $result = $response->json();
+        $result = $this->transform($result);
 
         return response()->json($result, $response->status());
     }
@@ -112,7 +114,6 @@ class BrickEventController extends Controller
     {
         return $this->doReport($request, $aid);
     }
-
 
     /**
      * @param $json

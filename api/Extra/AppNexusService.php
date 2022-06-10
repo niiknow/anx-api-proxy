@@ -1,7 +1,7 @@
 <?php
+
 namespace Api\Extra;
 
-use Api\Extra\CacheTokenStorage;
 use F3\AppNexusClient\AppNexusClient;
 
 class AppNexusService
@@ -12,15 +12,15 @@ class AppNexusService
     public $api;
 
     /**
-     * Initialize an instance of AppNexusService
+     * Initialize an instance of AppNexusService.
      */
     public function __construct()
     {
         $username = config('admin.appnexus.username');
         $password = config('admin.appnexus.password');
-        $apiUrl   = config('admin.appnexus.url');
-        $storage  = new CacheTokenStorage();
-        $apiUrl   = trim($apiUrl, '/') . '/';
+        $apiUrl = config('admin.appnexus.url');
+        $storage = new CacheTokenStorage();
+        $apiUrl = trim($apiUrl, '/').'/';
 
         $this->api = new AppNexusClient($username, $password, $apiUrl, $storage);
     }
@@ -41,7 +41,7 @@ class AppNexusService
     /**
      * Allow for unit test debugging.
      *
-     * @return boolean
+     * @return bool
      */
     public function isDebug()
     {

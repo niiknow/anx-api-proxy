@@ -1,7 +1,7 @@
 <?php
+
 namespace Api\Controllers;
 
-use Api\Controllers\Controller;
 use Api\Extra\AppNexusService;
 use Api\Extra\ReportKeyTrait;
 use Carbon\Carbon;
@@ -17,7 +17,7 @@ class AdvertiserController extends Controller
     protected $anx;
 
     /**
-     * Initialize an instance of AdvertiserController
+     * Initialize an instance of AdvertiserController.
      *
      * @param AppNexusService $anx the AppNexus service
      */
@@ -33,7 +33,7 @@ class AdvertiserController extends Controller
      */
     public function doReport(Request $request, $aid, $columns)
     {
-        if (!$this->isValidKey($request->query('key'))) {
+        if (! $this->isValidKey($request->query('key'))) {
             return response()->json(['error' => 'Not authorized'], 403);
         }
 
@@ -47,7 +47,7 @@ class AdvertiserController extends Controller
         // \Log::info($columns);
 
         $reportId = $request->query('report_id');
-        if (!isset($reportId)) {
+        if (! isset($reportId)) {
             // select from report folder
             $param = [
                 'report_type'      => 'advertiser_analytics',
@@ -56,7 +56,7 @@ class AdvertiserController extends Controller
                 'format'           => 'csv',
                 'timezone'         => 'UTC',
                 'report_interval'  => 'last_30_days',
-                'end_date'         => Carbon::now()->subDays(1)->format('Y-m-d') . ' 23:59:59'
+                'end_date'         => Carbon::now()->subDays(1)->format('Y-m-d').' 23:59:59',
             ];
 
             $reportInterval = $request->query('report_interval');
@@ -71,14 +71,14 @@ class AdvertiserController extends Controller
 
                     $end = $request->query('end');
                     if (isset($end)) {
-                        $param['end_date'] = $end . ' 23:59:59';
+                        $param['end_date'] = $end.' 23:59:59';
                     }
                 } else {
                     unset($param['end_date']);
                 }
             }
 
-            $path = 'report?advertiser_id=' . $aid;
+            $path = 'report?advertiser_id='.$aid;
 
             try {
                 $rst = $this->anx->call('POST', $path, ['report' => $param]);
@@ -94,26 +94,30 @@ class AdvertiserController extends Controller
         sleep(1);
 
         // check status
-        $path = 'report?id=' . $reportId;
-        $pd   = $this->anx->call('GET', $path);
+        $path = 'report?id='.$reportId;
+        $pd = $this->anx->call('GET', $path);
 
         // report is pending, wait for 5 seconds
         if ($pd->execution_status === 'pending') {
             sleep(5);
         }
 
-        $path = 'report-download?id=' . $reportId;
-        $pd   = $this->anx->call('GET', $path);
+        return $this->getReportById($id);
+    }
 
-        $data   = array_map('str_getcsv', explode("\n", $pd));
+    private function getReportById($id)
+    {
+        $path = 'report-download?id='.$id;
+        $pd = $this->anx->call('GET', $path);
+        $data = array_map('str_getcsv', explode("\n", $pd));
         $header = array_shift($data);
-        $hc     = count($header);
-        $csv    = [];
+        $hc = count($header);
+        $csv = [];
         foreach ($data as $row) {
             if (count($row) === $hc) {
-                $crow        = array_combine($header, $row);
+                $crow = array_combine($header, $row);
                 $crow['day'] = preg_replace('/\-+/', '', $crow['day']);
-                $csv[]       = $crow;
+                $csv[] = $crow;
             }
         }
 
@@ -123,7 +127,7 @@ class AdvertiserController extends Controller
                 'advertiser_id' => $aid,
                 'req'           => $param,
                 'recordsTotal'  => count($csv),
-                'data'          => $csv
+                'data'          => $csv,
             ])
             ->header('Cache-Control', 'max-age=86400, public');
     }
@@ -278,7 +282,7 @@ class AdvertiserController extends Controller
             'video_75_pcts',
             'video_completions',
             'video_served',
-            'video_errors'
+            'video_errors',
         ]);
     }
 
@@ -353,7 +357,7 @@ class AdvertiserController extends Controller
             'video_75_pcts',
             'video_completions',
             'video_served',
-            'video_errors'
+            'video_errors',
         ]);
     }
 }

@@ -19,25 +19,25 @@
         "not ie <= 8"
     ],
     "devDependencies": {
-        "@babel/core": "^7.17.10",
-        "@babel/plugin-transform-runtime": "^7.17.10",
-        "@babel/preset-env": "^7.17.10",
+        "@babel/core": "^7.18.2",
+        "@babel/plugin-transform-runtime": "^7.18.2",
+        "@babel/preset-env": "^7.18.2",
         "babel-loader": "^8.2.5",
         "babel-plugin-istanbul": "^6.1.1",
-        "browser-sync": "^2.27.9",
+        "browser-sync": "^2.27.10",
         "browser-sync-webpack-plugin": "^2.3.0",
-        "eslint": "^8.15.0",
+        "eslint": "^8.17.0",
         "eslint-config-prettier": "^8.5.0",
         "eslint-friendly-formatter": "^4.0.1",
-        "eslint-plugin-vue": "^8.7.1",
+        "eslint-plugin-vue": "^9.1.0",
         "eslint-webpack-plugin": "^3.1.1",
-        "laravel-mix": "^6.0.43",
+        "laravel-mix": "^6.0.49",
         "resolve-url-loader": "^5.0.0",
-        "sass": "^1.51.0",
-        "sass-loader": "^12.6.0",
-        "vue": "^3.2.33",
+        "sass": "^1.52.3",
+        "sass-loader": "^13.0.0",
+        "vue": "^3.2.37",
         "vue-loader": "^17.0.0",
         "vue-template-compiler": "^2.6.14",
-        "webpack": "^5.72.1"
+        "webpack": "^5.73.0"
     }
 }

@@ -1,25 +1,26 @@
 <?php
+
 namespace Api\Extra;
 
 use F3\AppNexusClient\TokenStorage;
 use Illuminate\Support\Facades\Cache;
 
 /**
- * CacheTokenStorage
+ * CacheTokenStorage.
  *
  * @uses TokenStorage
  */
 class CacheTokenStorage implements TokenStorage
 {
     /**
-     * get token
+     * get token.
      *
      * @param  string         $username
      * @return string|false
      */
     public function get($username)
     {
-        $key = 'CacheTokenStorage_' . $username;
+        $key = 'CacheTokenStorage_'.$username;
         if (Cache::has($key)) {
             return Cache::get($key);
         }
@@ -28,7 +29,7 @@ class CacheTokenStorage implements TokenStorage
     }
 
     /**
-     * set token
+     * set token.
      *
      * @param  string $username
      * @param  string $token
@@ -36,6 +37,6 @@ class CacheTokenStorage implements TokenStorage
      */
     public function set($username, $token)
     {
-        Cache::put('CacheTokenStorage_' . $username, $token, 59);
+        Cache::put('CacheTokenStorage_'.$username, $token, 59);
     }
 }

@@ -13,11 +13,11 @@ return [
     |
     */
     'core'                   => [
-        'minPhpVersion' => '7.2.0'
+        'minPhpVersion' => '7.2.0',
     ],
     'final'                  => [
         'key'     => true,
-        'publish' => false
+        'publish' => false,
     ],
     'requirements'           => [
         'php'    => [
@@ -26,11 +26,11 @@ return [
             'mbstring',
             'tokenizer',
             'JSON',
-            'cURL'
+            'cURL',
         ],
         'apache' => [
-            'mod_rewrite'
-        ]
+            'mod_rewrite',
+        ],
     ],
 
     /*
@@ -45,7 +45,7 @@ return [
     'permissions'            => [
         'storage/framework/' => '775',
         'storage/logs/'      => '775',
-        'bootstrap/cache/'   => '775'
+        'bootstrap/cache/'   => '775',
     ],
 
     /*
@@ -86,9 +86,9 @@ return [
                 'mail_encryption'     => 'required|string|max:50',
                 'pusher_app_id'       => 'max:50',
                 'pusher_app_key'      => 'max:50',
-                'pusher_app_secret'   => 'max:50'
-            ]
-        ]
+                'pusher_app_secret'   => 'max:50',
+            ],
+        ],
     ],
 
     /*
@@ -103,15 +103,15 @@ return [
         'redirectOptions' => [
             'route' => [
                 'name' => 'welcome',
-                'data' => []
+                'data' => [],
             ],
             'abort' => [
-                'type' => '404'
+                'type' => '404',
             ],
             'dump'  => [
-                'data' => 'Dumping a not found message.'
-            ]
-        ]
+                'data' => 'Dumping a not found message.',
+            ],
+        ],
     ],
 
     /*
@@ -135,6 +135,6 @@ return [
     | Boolean value
     |
     */
-    'updaterEnabled'         => 'true'
+    'updaterEnabled'         => 'true',
 
 ];

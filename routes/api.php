@@ -1,15 +1,15 @@
 <?php
 
 Route::group(['prefix' => 'v1', 'middleware' => 'gpcachepage'], function () {
-/*
-    Route::group(['prefix' => 'proxy', 'middleware' => 'api'], function () {
-        Route::match(
-            ['get', 'post', 'put', 'delete'],
-            '/{path?}',
-            'ProxyController@index'
-        )->where('path', '[\/\w\.-]*');
-    });
-*/
+    /*
+        Route::group(['prefix' => 'proxy', 'middleware' => 'api'], function () {
+            Route::match(
+                ['get', 'post', 'put', 'delete'],
+                '/{path?}',
+                'ProxyController@index'
+            )->where('path', '[\/\w\.-]*');
+        });
+    */
 
     Route::get(
         '/advertiser/{aid}/report/line',

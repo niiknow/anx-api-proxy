@@ -30,9 +30,11 @@
      patterns on the command line.
 
   -->
+  <exclude-pattern>*/app/Console/*</exclude-pattern>
+  <exclude-pattern>*/api/helpers.php</exclude-pattern>
   <exclude-pattern>*/database/*</exclude-pattern>
   <exclude-pattern>*/cache/*</exclude-pattern>
-  <exclude-pattern>*/resources/lang/*</exclude-pattern>
+  <exclude-pattern>*/config/*</exclude-pattern>
   <exclude-pattern>*/*.js</exclude-pattern>
   <exclude-pattern>*/*.css</exclude-pattern>
   <exclude-pattern>*/*.xml</exclude-pattern>
@@ -44,7 +46,8 @@
   <exclude-pattern>*/migrations/*</exclude-pattern>
   <exclude-pattern>*/public/publish.php</exclude-pattern>
   <exclude-pattern>*/public/index.php</exclude-pattern>
-  <exclude-pattern>installer.php</exclude-pattern>
+  <exclude-pattern>*/tests/*</exclude-pattern>
+  <exclude-pattern>*/resources/lang/*</exclude-pattern>
 
   <!--
      You can hard-code command line values into your custom standard.
@@ -111,7 +114,7 @@
 
   <rule ref="Generic.ControlStructures.InlineControlStructure"/>
   <rule ref="Generic.Formatting.DisallowMultipleStatements"/>
-  <rule ref="Generic.Formatting.MultipleStatementAlignment"/>
+<!--   <rule ref="Generic.Formatting.MultipleStatementAlignment"/> -->
   <rule ref="Generic.Metrics.CyclomaticComplexity"/>
   <rule ref="Generic.Metrics.NestingLevel"/>
   <rule ref="Generic.PHP.DeprecatedFunctions"/>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Exceptions;
 
 use Exception;
@@ -8,5 +9,4 @@ use Exception;
  */
 class GeneralException extends Exception
 {
-
 }

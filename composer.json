@@ -23,6 +23,7 @@
     "require-dev": {
         "fakerphp/faker": "^1.9",
         "filp/whoops": "^2.14",
+        "fossbarrow/laravel-phpcs": "dev-main",
         "friendsofphp/php-cs-fixer": "^3.8",
         "laravel/sail": "^1.13",
         "mockery/mockery": "^1.5",
@@ -51,8 +52,9 @@
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
         ],
-        "phpcs": "phpcs",
+        "phpcs": "phpcs -s --report=full --report=source",
         "phpcs:fix": "phpcbf -w",
+        "format": "./vendor/bin/php-cs-fixer fix --using-cache=no",
         "app:clear": [
             "rm -f dist.tar",
             "rm -f bootstrap/cache/config.php",
@@ -67,7 +69,7 @@
         "app:package": [
             "composer app:clear",
             "rm -f storage/framework/sessions/*",
-            "npm run production",
+            "npm run development",
             "chmod -R 775 bootstrap/",
             "chmod -R 775 storage/",
             "composer install --no-dev --optimize-autoloader",
@@ -90,6 +92,7 @@
         "post-create-project-cmd": [
             "@php artisan key:generate --ansi"
         ]
+
     },
     "archive": {
         "name": "dist",
@@ -100,16 +103,23 @@
             "playbook/",
             "public/.tmb/",
             "storage/debugbar/",
-            "storage/logs/laravel.log",
+            "storage/logs/*.log",
             "node_modules/",
             "tests/",
             "vendor/",
             ".DS_Store",
+            ".babelrc",
+            ".editorconfig",
             ".env",
-            ".php_cs.cache",
-            ".phpunit.result.cache",
+            ".env.testing",
+            ".eslintrc.js",
+            ".gitignore",
+            ".php*.php",
+            ".vue*",
+            ".*.cache",
             "*.md",
-            "*.xml"
+            "*.xml",
+            "webpack.mix.js"
         ]
     },
     "extra": {

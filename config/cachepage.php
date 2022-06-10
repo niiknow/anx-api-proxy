@@ -2,15 +2,15 @@
 
 return [
 
-	//Time to store cached pages if not specified.
-	'time' => 30,
+    //Time to store cached pages if not specified.
+    'time' => 30,
 
-	//Allow skipping cache using parameters in HTTP request.
-	'allowSkipping' => true,
+    //Allow skipping cache using parameters in HTTP request.
+    'allowSkipping' => true,
 
-	//Allow clearing the cached response using parameters in HTTP request.
-	'allowClearing' => true,
+    //Allow clearing the cached response using parameters in HTTP request.
+    'allowClearing' => true,
 
-	//Allow flushing all cached pages using parameters in HTTP request.
-	'allowFlushing' => false,
+    //Allow flushing all cached pages using parameters in HTTP request.
+    'allowFlushing' => false,
 ];

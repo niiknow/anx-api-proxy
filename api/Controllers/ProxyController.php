@@ -1,7 +1,7 @@
 <?php
+
 namespace Api\Controllers;
 
-use Api\Controllers\Controller;
 use Api\Extra\AppNexusService;
 use Illuminate\Http\Request;
 
@@ -13,7 +13,7 @@ class ProxyController extends Controller
     protected $anx;
 
     /**
-     * Initialize an instance of ProxyController
+     * Initialize an instance of ProxyController.
      *
      * @param AppNexusService $anx the AppNexus service
      */
@@ -152,7 +152,7 @@ class ProxyController extends Controller
     public function index(Request $request, $path)
     {
         $path = trim($path, '/');
-        $path = $path . ($request->getQueryString() ? ('?' . $request->getQueryString()) : '');
+        $path = $path.($request->getQueryString() ? ('?'.$request->getQueryString()) : '');
 
         try {
             $rst = $this->anx->call($request->getMethod(), $path, $request->all());

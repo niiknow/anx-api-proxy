@@ -1,4 +1,5 @@
 <?php
+
 namespace Api\Controllers;
 
 use Api\Controllers\Controller as MyController;
@@ -17,7 +18,7 @@ class FacebookBusinessController extends MyController
     protected $svc;
 
     /**
-     * Initialize an instance of ProxyController
+     * Initialize an instance of ProxyController.
      *
      * @param FacebookBusinessService $svc the service
      */
@@ -33,13 +34,13 @@ class FacebookBusinessController extends MyController
      */
     public function doReport(Request $request, $aid, $columns)
     {
-        if (!$this->isValidKey($request->query('key'))) {
+        if (! $this->isValidKey($request->query('key'))) {
             return response()->json(['error' => 'Not authorized'], 403);
         }
 
         // \Log::info($columns);
         $start_date = Carbon::now()->subDays(1);
-        $end_date   = Carbon::now();
+        $end_date = Carbon::now();
 
         $start = $request->query('start');
         if (isset($start)) {
@@ -62,20 +63,20 @@ class FacebookBusinessController extends MyController
             'time_increment' => 1,
             'time_range'     => [
                 'since' => $start_date->format('Y-m-d'),
-                'until' => $end_date->format('Y-m-d')
-            ]
+                'until' => $end_date->format('Y-m-d'),
+            ],
         ];
 
-        $account  = $this->svc->getAccount($aid);
+        $account = $this->svc->getAccount($aid);
         $insights = $account->getInsights($columns, $params);
-        $data     = $this->transform($insights);
+        $data = $this->transform($insights);
 
         return response()
             ->json([
                 'advertiser_id' => $aid,
                 'req'           => $params,
                 'data'          => $data,
-                'recordsTotal'  => count($data)
+                'recordsTotal'  => count($data),
             ])
             ->header('Cache-Control', 'max-age=86400, public');
     }
@@ -95,7 +96,7 @@ class FacebookBusinessController extends MyController
             'ctr',
             'impressions',
             'clicks',
-            'spend'
+            'spend',
         ]);
     }
 
@@ -108,7 +109,7 @@ class FacebookBusinessController extends MyController
 
         $data = $insights->getResponse()->getContent()['data'];
 
-        $rows   = [];
+        $rows = [];
         $ignore = ['date_start', 'date_stop'];
         foreach ($data as $row) {
             // massage the row
