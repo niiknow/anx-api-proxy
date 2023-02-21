@@ -45,20 +45,19 @@ class AdvertiserController extends Controller
         $columns = array_diff($columns, ['day']);
         array_unshift($columns, 'day');
         // \Log::info($columns);
+        //
+        $param = [
+            'report_type'      => 'advertiser_analytics',
+            'columns'          => $columns,
+            'time_granularity' => 'daily',
+            'format'           => 'csv',
+            'timezone'         => 'UTC',
+            'report_interval'  => 'last_30_days',
+            'end_date'         => Carbon::now()->subDays(1)->format('Y-m-d').' 23:59:59',
+        ];
 
         $reportId = $request->query('report_id');
         if (! isset($reportId)) {
-            // select from report folder
-            $param = [
-                'report_type'      => 'advertiser_analytics',
-                'columns'          => $columns,
-                'time_granularity' => 'daily',
-                'format'           => 'csv',
-                'timezone'         => 'UTC',
-                'report_interval'  => 'last_30_days',
-                'end_date'         => Carbon::now()->subDays(1)->format('Y-m-d').' 23:59:59',
-            ];
-
             $reportInterval = $request->query('report_interval');
             if (isset($reportInterval)) {
                 unset($param['end_date']);
@@ -102,10 +101,10 @@ class AdvertiserController extends Controller
             sleep(5);
         }
 
-        return $this->getReportById($id);
+        return $this->getReportById($reportId, $aid, $param);
     }
 
-    private function getReportById($id)
+    private function getReportById($id, $aid, $param)
     {
         $path = 'report-download?id='.$id;
         $pd = $this->anx->call('GET', $path);
@@ -123,7 +122,7 @@ class AdvertiserController extends Controller
 
         return response()
             ->json([
-                'id'            => $reportId,
+                'id'            => $id,
                 'advertiser_id' => $aid,
                 'req'           => $param,
                 'recordsTotal'  => count($csv),

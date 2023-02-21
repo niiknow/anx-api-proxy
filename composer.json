@@ -12,6 +12,7 @@
         "glaivepro/cachepage": "^1.5",
         "guzzlehttp/guzzle": "^7.4",
         "laravel/framework": "^9.2",
+        "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.7",
         "league/csv": "^9.8",
         "league/flysystem-aws-s3-v3": "^3.0.13",
