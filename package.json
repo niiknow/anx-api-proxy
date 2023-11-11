@@ -19,7 +19,7 @@
         "not ie <= 8"
     ],
     "devDependencies": {
-        "axios": "^1.4.0",
+        "axios": "^1.6.0",
         "laravel-mix": "^6.0.49",
         "webpack": "^5.88.2"
     }
